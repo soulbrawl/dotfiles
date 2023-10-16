@@ -1,0 +1,28 @@
+#!/bin/sh
+
+xrdb -merge "$HOME/.config/xresources"
+
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+	--output VGA-1-1 --off --output DP-1-1 --off --output HDMI-1-1 \
+	--off --output HDMI-1-2 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+
+xset r rate 300 50 &
+
+# jamesdsp --tray &
+jamesdsp --load-preset EdifierR1280TwLowPass &
+redshift &
+pcloud &
+#1password --silent &
+xwallpaper --zoom "$HOME/.config/wall.jpg" &
+picom -b &
+#xcompmgr &
+dunst &
+sxhkd &
+#xmodmap ~/.config/xmodmap/Xmodmap &
+
+while xsetroot -name " $(date +"%U/53 %j/365 %t%F %w %A%t%T") [$(uptime | sed 's/.*, //')]"; do
+	sleep 1
+done &
+
+exec dwm >/dev/null 2>&1
