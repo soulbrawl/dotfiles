@@ -1,0 +1,12 @@
+# media keys
+XF86AudioPlay
+  playerctl play-pause
+
+XF86Audio{Prev,Next}
+  playerctl {previous,next}
+
+Print
+  maim --select | tee ~/pics/screenshots/$(date +%F_%H-%M-%S).png | xclip -selection clipboard -t image/png
+
+shift + Print
+  flameshot gui
